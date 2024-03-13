@@ -37,7 +37,7 @@ public class App {
             myReader.close();
         } catch (FileNotFoundException e)
         {
-            System.out.println("An error occurred.");
+            System.out.println("Файл не найден! Проверьте указанный путь.");
             e.printStackTrace();
         }
     }
