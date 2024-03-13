@@ -1,5 +1,4 @@
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.Scanner;
 
@@ -19,11 +18,27 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] input_list = parse_input();
+        String[] input_list;
+        OperationsEnum chosenOperation;
+        BigDecimal a;
+        BigDecimal b;
+        try {
+            input_list = parse_input();
+            a = new BigDecimal(input_list[0]);
+            b = new BigDecimal(input_list[1]);
+        } catch (Exception e) {
+            System.out.println("Необходимо ввести значения" +
+                               " в формате '<число> <число> <операция>'!");
+            return;
+        }
 
-        OperationsEnum chosenOperation = OperationsEnum.valueOf(input_list[2]);
-        BigDecimal a = new BigDecimal(input_list[0]);
-        BigDecimal b = new BigDecimal(input_list[1]);
+        try {
+            chosenOperation = OperationsEnum.valueOf(input_list[2]);
+        } catch (Exception e) {
+            System.out.println("Некорректная операция!");
+            return;
+        }
+
         switch (chosenOperation) {
             case ADD:
                 System.out.println(a.add(b));
@@ -53,7 +68,6 @@ public class App {
                 }
                 break;
             default:
-                System.err.println("Wrong operation!");
                 break;
         }
     }
