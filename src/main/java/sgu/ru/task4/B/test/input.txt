@@ -1,0 +1,2 @@
+sunday 10 -> wednesday
+monday 20 -> sunday
