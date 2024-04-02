@@ -61,7 +61,6 @@ public class App {
         try
         {
             File myObj = new File(filepath);
-            // File myObj = new File("test/input.txt");
             Scanner myReader = new Scanner(myObj);
             List<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
             while (myReader.hasNextLine()) {
