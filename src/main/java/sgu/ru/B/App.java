@@ -1,31 +1,34 @@
+package src.main.java.sgu.ru.B;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class App {
-    static String[] parse_input() {
-        System.out.println("Write:");
-        Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
-        String delims = "[ ]";
-        String[] strarray = input.split(delims);
-        scan.close();
-        return strarray;
-    }
-
     enum OperationsEnum {
         ADD, SUB, MULT, DIV, REM, POW
     }
 
     public static void main(String[] args) throws Exception {
-        String[] input_list;
         OperationsEnum chosenOperation;
         BigDecimal a;
         BigDecimal b;
+        String[] inputList;
+        
         try {
-            input_list = parse_input();
-            a = new BigDecimal(input_list[0]);
-            b = new BigDecimal(input_list[1]);
+            System.out.println("Write:");
+            Scanner scan = new Scanner(System.in);
+            String input = scan.nextLine();
+            String delims = "[ ]";
+            inputList = input.split(delims);
+            scan.close();
+        } catch (Exception e) {
+            System.out.println("Ошибка ввода.");
+            return;
+        }
+
+        try {
+            a = new BigDecimal(inputList[0]);
+            b = new BigDecimal(inputList[1]);
         } catch (Exception e) {
             System.out.println("Необходимо ввести значения" +
                                " в формате '<число> <число> <операция>'!");
@@ -33,7 +36,7 @@ public class App {
         }
 
         try {
-            chosenOperation = OperationsEnum.valueOf(input_list[2]);
+            chosenOperation = OperationsEnum.valueOf(inputList[2]);
         } catch (Exception e) {
             System.out.println("Некорректная операция!");
             return;
@@ -56,10 +59,12 @@ public class App {
                 System.out.println(a.remainder(b));
                 break;
             case POW:
-                if (input_list[1].contains("-")) {
-                    var positive_b = b.multiply(new BigDecimal(-1));
-                    var denominator = a.pow(positive_b.intValue());
-                    var ans = new BigDecimal("1").divide(denominator, 20, RoundingMode.FLOOR);
+                if (inputList[1].contains("-")) {
+                    var positiveB = b.multiply(new BigDecimal(-1));
+                    var denominator = a.pow(positiveB.intValue());
+                    var ans = new BigDecimal("1").divide(denominator,
+                                                         20,
+                                                         RoundingMode.FLOOR);
                     System.out.println(ans);
                 }
                 else
