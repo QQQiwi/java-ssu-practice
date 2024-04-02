@@ -18,7 +18,8 @@ public class App {
 
         System.out.println("Результат работы программы:");
         var daysAmount = Integer.valueOf(data[1]);
-        var resultDayIdx = (daysAmount + weekEnum.valueOf(data[0]).ordinal()) % 7;
+        var resultDayIdx = (daysAmount + weekEnum.valueOf(data[0]).ordinal())
+                           % 7;
         System.out.println(weekEnum.values()[resultDayIdx]);
     }
 }

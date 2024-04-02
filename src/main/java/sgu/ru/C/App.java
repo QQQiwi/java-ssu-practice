@@ -5,18 +5,19 @@ public class App {
     static int strLen = 10;
     static int callAmount = 100000;
 
-    static void firstTry()
+    private static void firstTry()
     {
         Random random = new Random();
         for (int i = 0; i < callAmount; i++)
         {
             byte[] array = new byte[strLen];
             random.nextBytes(array);
-            String generatedString = new String(array, Charset.forName("ISO-8859-1"));
+            String generatedString = new String(array,
+                                                Charset.forName("ISO-8859-1"));
         }
     }
 
-    static void secondTry()
+    private static void secondTry()
     {
         String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiop[]asdfghjkl;'zxcvbnm,./";
         char[] ch = ALPHA_NUMERIC_STRING.toCharArray();
@@ -41,7 +42,7 @@ public class App {
     }
 
 
-    public static void thirdTry()
+    private static void thirdTry()
     {
         StringBuilder stringBuilder = new StringBuilder();
         Random random = new Random();
@@ -52,7 +53,7 @@ public class App {
         }
     }
 
-    public static void fourthTry()
+    private static void fourthTry()
     {
         Random random = new Random();
         String str = new String();
@@ -63,7 +64,7 @@ public class App {
         }
     }
 
-    public static void fifthTry()
+    private static void fifthTry()
     {
         Random random = new Random();
         StringBuffer str = new StringBuffer();
@@ -78,22 +79,27 @@ public class App {
     {
         long start = System.currentTimeMillis();
         firstTry();
-        System.out.println("Способ 1 (byte): " + ((System.currentTimeMillis() - start)));
+        System.out.println("Способ 1 (byte): "
+                           + ((System.currentTimeMillis() - start)));
         
         start = System.currentTimeMillis();
         secondTry();
-        System.out.println("Способ 2 (char): " + ((System.currentTimeMillis() - start)));
+        System.out.println("Способ 2 (char): "
+                           + ((System.currentTimeMillis() - start)));
         
         start = System.currentTimeMillis();
         thirdTry();
-        System.out.println("Способ 3 (StringBuilder): " + ((System.currentTimeMillis() - start)));
+        System.out.println("Способ 3 (StringBuilder): "
+                           + ((System.currentTimeMillis() - start)));
 
         start = System.currentTimeMillis();
         fourthTry();
-        System.out.println("Способ 4 (String): " + ((System.currentTimeMillis() - start)));
+        System.out.println("Способ 4 (String): "
+                           + ((System.currentTimeMillis() - start)));
 
         start = System.currentTimeMillis();
         fifthTry();
-        System.out.println("Способ 5 (StringBuffer): " + ((System.currentTimeMillis() - start)));
+        System.out.println("Способ 5 (StringBuffer): "
+                           + ((System.currentTimeMillis() - start)));
     }
 }

@@ -6,18 +6,6 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class App {
-    static long process_string(String data, SimpleDateFormat dateFormat)
-    {
-        try {
-            Date parsedDate = dateFormat.parse(data);
-            return parsedDate.getTime();
-        } catch (Exception e) {
-            System.out.println("Please check date format.");
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
     public static void main(String[] args) throws Exception {
         System.out.println("Введите путь к файлу:");
         Scanner scan = new Scanner(System.in);
@@ -32,12 +20,20 @@ public class App {
 
             long minDate = -1;
             long maxDate = 0;
+            long curDate = 0;
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MM dd");
 
             while (myReader.hasNextLine())
             {
                 String data = myReader.nextLine();
-                var curDate = process_string(data, dateFormat);
+                try {
+                    Date parsedDate = dateFormat.parse(data);
+                    curDate = parsedDate.getTime();
+                } catch (Exception e) {
+                    System.out.println("Проверь формат даты.");
+                    e.printStackTrace();
+                }
+
                 if (minDate == -1 || minDate > curDate)
                 {
                     minDate = curDate;
@@ -52,7 +48,8 @@ public class App {
             System.out.println(diff);
         } catch (FileNotFoundException e)
         {
-            System.out.println("An error occurred.");
+            System.out.println("Возникла ошибка чтения файла или вычисления дат"
+                               + ". Проверьте введенные значения");
             e.printStackTrace();
         }
     }
