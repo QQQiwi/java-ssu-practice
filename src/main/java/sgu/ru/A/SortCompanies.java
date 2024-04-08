@@ -8,48 +8,45 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
+class RatingComparator implements Comparator<ArrayList<String>> {
+    public int compare(ArrayList<String> c1, ArrayList<String> c2) {
+        if (Integer.valueOf(c1.get(4)) <= Integer.valueOf(c2.get(4))) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+}
+
+class SecondNameComparator implements Comparator<ArrayList<String>> {
+    public int compare(ArrayList<String> c1, ArrayList<String> c2) {
+        return c1.get(0).compareTo(c2.get(0));
+    }
+}
+
+class FirstNameComparator implements Comparator<ArrayList<String>> {
+    public int compare(ArrayList<String> c1, ArrayList<String> c2) {
+        return c1.get(1).compareTo(c2.get(1));
+    }
+}
+
+class LastNameComparator implements Comparator<ArrayList<String>> {
+    public int compare(ArrayList<String> c1, ArrayList<String> c2) {
+        return c1.get(2).compareTo(c2.get(2));
+    }
+}
+
 public class SortCompanies {
-    static class RatingComparator implements Comparator<ArrayList<String>> {
-        public int compare(ArrayList<String> c1, ArrayList<String> c2) {
-            if (Integer.valueOf(c1.get(4)) <= Integer.valueOf(c2.get(4)))
-            {
-                return 1;
-            }
-            else
-            {
-                return -1;
+
+    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list) {
+        ArrayList<T> newList = new ArrayList<T>();
+        for (T element : list) {
+            if (!newList.contains(element)) {
+                newList.add(element);
             }
         }
+        return newList;
     }
-
-    static class SecondNameComparator implements Comparator<ArrayList<String>> {
-        public int compare(ArrayList<String> c1, ArrayList<String> c2) {
-            return c1.get(0).compareTo(c2.get(0));
-        }
-    }
-
-    static class FirstNameComparator implements Comparator<ArrayList<String>> {
-        public int compare(ArrayList<String> c1, ArrayList<String> c2) {
-            return c1.get(1).compareTo(c2.get(1));
-        }
-    }
-
-    static class LastNameComparator implements Comparator<ArrayList<String>> {
-        public int compare(ArrayList<String> c1, ArrayList<String> c2) {
-            return c1.get(2).compareTo(c2.get(2));
-        }
-    }
-
-    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list) 
-    { 
-        ArrayList<T> newList = new ArrayList<T>(); 
-        for (T element : list) { 
-            if (!newList.contains(element)) { 
-                newList.add(element); 
-            } 
-        } 
-        return newList; 
-    } 
 
     public static void main(String[] args) throws Exception {
         System.out.println("Введите путь к файлу:");
@@ -58,15 +55,14 @@ public class SortCompanies {
         scan.close();
         System.out.println("");
         System.out.println("Результат работы программы:");
-        try
-        {
+        try {
             File myObj = new File(filepath);
             Scanner myReader = new Scanner(myObj);
             List<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
             while (myReader.hasNextLine()) {
                 String curData = myReader.nextLine();
-                var info_array = curData.split("[ ]");
-                data.add(new ArrayList<String>(Arrays.asList(info_array)));
+                var infoArray = curData.split("[ ]");
+                data.add(new ArrayList<String>(Arrays.asList(infoArray)));
             }
             List<ArrayList<String>> uniqueData = new ArrayList<>(new HashSet<>(data));
             Collections.sort(uniqueData, new LastNameComparator());
@@ -75,9 +71,8 @@ public class SortCompanies {
             Collections.sort(uniqueData, new RatingComparator());
             System.out.println(uniqueData);
             myReader.close();
-        } catch (FileNotFoundException e)
-        {
-            System.out.println("An error occurred.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден!");
             e.printStackTrace();
         }
     }
