@@ -2,28 +2,23 @@ import java.nio.charset.Charset;
 import java.util.Random;
 
 public class StringAppendCheck {
-    static int strLen = 10;
-    static int callAmount = 100000;
+    private int strLen = 10;
+    private int callAmount = 100000;
 
-    private static void firstTry()
-    {
+    private void firstTry() {
         Random random = new Random();
-        for (int i = 0; i < callAmount; i++)
-        {
+        for (int i = 0; i < callAmount; i++) {
             byte[] array = new byte[strLen];
             random.nextBytes(array);
-            String generatedString = new String(array,
-                                                Charset.forName("ISO-8859-1"));
+            String generatedString = new String(array, Charset.forName("ISO-8859-1"));
         }
     }
 
-    private static void secondTry()
-    {
+    private void secondTry() {
         String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertyuiop[]asdfghjkl;'zxcvbnm,./";
         char[] ch = ALPHA_NUMERIC_STRING.toCharArray();
         Random random = new Random();
-        for (int i = 0; i < callAmount; i++)
-        {
+        for (int i = 0; i < callAmount; i++) {
             char[] chars = new char[strLen];
             for (int j = 0; j < strLen; j++) {
                 chars[j] = ch[random.nextInt(ch.length)];
@@ -31,8 +26,7 @@ public class StringAppendCheck {
         }
     }
 
-    private static String generateRandomString(Random random, int length)
-    {
+    private String generateRandomString(Random random, int length) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < length; i++) {
             char randomChar = (char) (random.nextInt(26) + 'a');
@@ -42,19 +36,17 @@ public class StringAppendCheck {
     }
 
 
-    private static void thirdTry()
-    {
+    private void thirdTry() {
         StringBuilder stringBuilder = new StringBuilder();
         Random random = new Random();
-        
+
         for (int i = 0; i < callAmount; i++) {
             String randomString = generateRandomString(random, strLen);
             stringBuilder.append(randomString);
         }
     }
 
-    private static void fourthTry()
-    {
+    private void fourthTry() {
         Random random = new Random();
         String str = new String();
 
@@ -64,8 +56,7 @@ public class StringAppendCheck {
         }
     }
 
-    private static void fifthTry()
-    {
+    private void fifthTry() {
         Random random = new Random();
         StringBuffer str = new StringBuffer();
 
@@ -75,31 +66,27 @@ public class StringAppendCheck {
         }
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
+        StringAppendCheck app = new StringAppendCheck();
+
         long start = System.currentTimeMillis();
-        firstTry();
-        System.out.println("Способ 1 (byte): "
-                           + ((System.currentTimeMillis() - start)));
-        
-        start = System.currentTimeMillis();
-        secondTry();
-        System.out.println("Способ 2 (char): "
-                           + ((System.currentTimeMillis() - start)));
-        
-        start = System.currentTimeMillis();
-        thirdTry();
-        System.out.println("Способ 3 (StringBuilder): "
-                           + ((System.currentTimeMillis() - start)));
+        app.firstTry();
+        System.out.println("Способ 1 (byte): " + (System.currentTimeMillis() - start) + " мс");
 
         start = System.currentTimeMillis();
-        fourthTry();
-        System.out.println("Способ 4 (String): "
-                           + ((System.currentTimeMillis() - start)));
+        app.secondTry();
+        System.out.println("Способ 2 (char): " + (System.currentTimeMillis() - start) + " мс");
 
         start = System.currentTimeMillis();
-        fifthTry();
-        System.out.println("Способ 5 (StringBuffer): "
-                           + ((System.currentTimeMillis() - start)));
+        app.thirdTry();
+        System.out.println("Способ 3 (StringBuilder): " + (System.currentTimeMillis() - start) + " мс");
+
+        start = System.currentTimeMillis();
+        app.fourthTry();
+        System.out.println("Способ 4 (String): " + (System.currentTimeMillis() - start) + " мс");
+
+        start = System.currentTimeMillis();
+        app.fifthTry();
+        System.out.println("Способ 5 (StringBuffer): " + (System.currentTimeMillis() - start) + " мс");
     }
 }
