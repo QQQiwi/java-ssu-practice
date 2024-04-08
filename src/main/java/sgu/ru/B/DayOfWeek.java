@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class App {
+public class DayOfWeek {
 
     enum weekEnum
     {
-        monday, tuesday, wednesday, thursday, friday, saturday, sunday
+        Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
     };
 
     public static void main(String[] args) throws Exception {

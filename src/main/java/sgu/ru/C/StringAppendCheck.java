@@ -1,7 +1,7 @@
 import java.nio.charset.Charset;
 import java.util.Random;
 
-public class App {
+public class StringAppendCheck {
     static int strLen = 10;
     static int callAmount = 100000;
 
