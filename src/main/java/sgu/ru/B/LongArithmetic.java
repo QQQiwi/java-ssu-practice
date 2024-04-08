@@ -3,7 +3,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Scanner;
 
-public class App {
+public class LongArithmetic {
     enum OperationsEnum {
         ADD, SUB, MULT, DIV, REM, POW
     }
@@ -14,26 +14,15 @@ public class App {
         BigDecimal b;
         String[] inputList;
         
-        try {
-            System.out.println("Write:");
-            Scanner scan = new Scanner(System.in);
-            String input = scan.nextLine();
-            String delims = "[ ]";
-            inputList = input.split(delims);
-            scan.close();
-        } catch (Exception e) {
-            System.out.println("Ошибка ввода.");
-            return;
-        }
+        System.out.println("Write:");
+        Scanner scan = new Scanner(System.in);
+        String input = scan.nextLine();
+        String delims = "[ ]";
+        inputList = input.split(delims);
+        scan.close();
 
-        try {
-            a = new BigDecimal(inputList[0]);
-            b = new BigDecimal(inputList[1]);
-        } catch (Exception e) {
-            System.out.println("Необходимо ввести значения" +
-                               " в формате '<число> <число> <операция>'!");
-            return;
-        }
+        a = new BigDecimal(inputList[0]);
+        b = new BigDecimal(inputList[1]);
 
         try {
             chosenOperation = OperationsEnum.valueOf(inputList[2]);

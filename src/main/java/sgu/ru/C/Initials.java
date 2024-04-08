@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class App {
+public class Initials {
     public static void main(String[] args) throws Exception {
         System.out.println("Введите путь к файлу:");
         Scanner scan = new Scanner(System.in);
