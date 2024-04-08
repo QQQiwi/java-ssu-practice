@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
-public class App {
+public class SortCompanies {
     static class RatingComparator implements Comparator<ArrayList<String>> {
         public int compare(ArrayList<String> c1, ArrayList<String> c2) {
             if (Integer.valueOf(c1.get(4)) <= Integer.valueOf(c2.get(4)))

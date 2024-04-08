@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class App {
+public class ArchiveByString {
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
