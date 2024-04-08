@@ -38,7 +38,7 @@ class LastNameComparator implements Comparator<ArrayList<String>> {
 
 public class SortCompanies {
 
-    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list) {
+    public <T> ArrayList<T> removeDuplicates(ArrayList<T> list) {
         ArrayList<T> newList = new ArrayList<T>();
         for (T element : list) {
             if (!newList.contains(element)) {
