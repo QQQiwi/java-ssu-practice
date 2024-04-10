@@ -10,10 +10,13 @@ import java.util.Scanner;
 
 class RatingComparator implements Comparator<ArrayList<String>> {
     public int compare(ArrayList<String> c1, ArrayList<String> c2) {
-        if (Integer.valueOf(c1.get(4)) <= Integer.valueOf(c2.get(4))) {
+        if (Integer.valueOf(c1.get(4)) < Integer.valueOf(c2.get(4))) {
             return 1;
-        } else {
+        } else if (Integer.valueOf(c1.get(4)) > Integer.valueOf(c2.get(4))) {
             return -1;
+        }
+        else {
+            return 0;
         }
     }
 }
@@ -37,7 +40,6 @@ class LastNameComparator implements Comparator<ArrayList<String>> {
 }
 
 public class SortCompanies {
-
     public <T> ArrayList<T> removeDuplicates(ArrayList<T> list) {
         ArrayList<T> newList = new ArrayList<T>();
         for (T element : list) {
