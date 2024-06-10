@@ -46,7 +46,7 @@ public class TarifController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTarif(@PathVariable Long id) {
+    public ResponseEntity<String> deleteTarif(@PathVariable Long id) {
         try {
             if (tarifService.deleteTarif(id)) {
                 return ResponseEntity.noContent().build();
@@ -54,7 +54,8 @@ public class TarifController {
                 return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            String errorMessage = "Невозможно удалить тариф так как существуют пользователи с этим тарифом!";
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
         }
     }
 }
